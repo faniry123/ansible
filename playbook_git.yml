@@ -1,6 +1,6 @@
 ---
 - name: Install Git
-  hosts: your_target_servers
+  hosts: all
   become: yes
 
   tasks:
