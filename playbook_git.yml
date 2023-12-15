@@ -1,12 +1,9 @@
 ---
-- hosts: all
+- name: Update Debian System
+  hosts: all
   become: yes
+
   tasks:
-    - name: Set GIT_TERMINAL_PROMPT
-      environment:
-        GIT_TERMINAL_PROMPT: 1
     - name: Update apt package cache
       apt:
         update_cache: yes
-      become: yes
-   
