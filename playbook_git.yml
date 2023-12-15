@@ -1,8 +1,13 @@
 ---
-- name: Update Debian System
-  hosts: all
-  become: yes
+#1. Cette tâche permet d'installer Apache (httpd) à l'aide du module apt
+- name: "apache installation"
+  apt:
+    name: "apache2"
+    state:  "present"
 
-  tasks:
-    - name: Update apt package cache
-      apt: apt update
+#2. Cette tâche active le service Apache
+- name: "apache service activation"
+  service:
+    name: "apache2"
+    state: "started"
+    enabled: yes
