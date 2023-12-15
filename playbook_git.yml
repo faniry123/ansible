@@ -5,4 +5,5 @@
   tasks:
     - name: Update apt package cache
       apt:
-        update: true
+        update_cache: true
+
