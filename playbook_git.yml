@@ -1,6 +1,6 @@
 ---
-- name: Update Debian System
-  hosts: your_target_servers
+- name: tesst
+  hosts: all
   become: yes
 
   tasks:
