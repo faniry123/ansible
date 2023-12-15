@@ -11,7 +11,7 @@
       community.general.collection_install:
         name: "author.role1,author.role2"
         state: present
-        
+
 - name: tesst
   hosts: all
   become: true
@@ -19,4 +19,3 @@
     - name: Update apt package cache
       apt:
         update_cache: true
-
