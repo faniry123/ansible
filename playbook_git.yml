@@ -1,6 +1,6 @@
 ---
 - name: Install Git
-  hosts: all
+  hosts: debian
   become: yes
 
   tasks:
@@ -9,8 +9,4 @@
         update_cache: yes
       become: yes
 
-    - name: Install Git
-      apt:
-        name: git
-        state: present
-      become: yes
+   
