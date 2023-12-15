@@ -1,6 +1,6 @@
 ---
 #- name: Install Git
-  hosts: all
+ - hosts: all
   become: yes
 
   tasks:
