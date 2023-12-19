@@ -1,21 +1,9 @@
 ---
-- name: Install Ansible Galaxy Roles
-  hosts: all
-  gather_facts: false
-
-  tasks:
-    - name: Install community.general collection (if not already installed)
-      ansible.builtin.command: ansible-galaxy collection install community.general
-
-    - name: Install specific roles from Galaxy
-      community.general.collection_install:
-        name: "author.role1,author.role2"
-        state: present
-
 - name: tesst
   hosts: all
   become: true
   tasks:
     - name: Update apt package cache
       apt:
-        update_cache: true
+        update_cache: yes
+
