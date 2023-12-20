@@ -1,0 +1,22 @@
+---
+- name: Install Apache on Debian
+  hosts: your_target_host  # Replace with your target host or group
+  remote_user: your_remote_user  # Replace with your remote user
+  become: yes
+  become_method: sudo
+
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+
+    - name: Start Apache service
+      service:
+        name: apache2
+        state: started
+        enabled: yes
