@@ -7,4 +7,4 @@
 
   tasks:
     - name: Shutdown the machine
-      command: /sbin/shutdown -h now
+      shell: /sbin/shutdown -h now
