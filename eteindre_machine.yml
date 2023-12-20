@@ -4,6 +4,7 @@
   remote_user: debian  # Replace with your remote user
   become: yes
   become_method: sudo
+  become_exe: /usr/bin/sudo
 
   tasks:
     - name: Shutdown the machine
