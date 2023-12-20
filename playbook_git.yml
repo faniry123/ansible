@@ -1,7 +1,10 @@
 ---
-- name: tesst
+- name: test
   hosts: all
-  become: true
+  remote_user: debian
+  become: yes
+  become_method: sudo
+  become_user: debian
   tasks:
     - name: Update apt package cache
       apt:
