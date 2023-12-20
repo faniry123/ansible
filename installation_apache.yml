@@ -18,6 +18,6 @@
 
     - name: Start Apache service
       service:
-        name: apache2
+        name: apache2  # Use 'httpd' if 'apache2' doesn't work
         state: started
         enabled: yes
