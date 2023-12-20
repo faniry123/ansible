@@ -1,6 +1,6 @@
 ---
 - name: Installer Apache2
-  hosts: 172.22.1.98  # Remplacez "vos_serveurs" par le groupe d'hôtes ou l'adresse IP de vos serveurs cibles
+  hosts: all  # Remplacez "vos_serveurs" par le groupe d'hôtes ou l'adresse IP de vos serveurs cibles
   become: true          # Nécessaire pour exécuter des commandes avec des privilèges administratifs (sudo)
 
   tasks:
