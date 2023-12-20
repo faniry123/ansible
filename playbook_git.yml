@@ -1,11 +1,10 @@
 ---
 - name: Reboot the machine
   hosts: all
-  remote_user: debian
-  become: yes
-  become_method: sudo
-  become_user: debian
-
+  become: true
+  
   tasks:
-    - name: Reboot the machine
-      shell: /sbin/reboot
+    - name: APT Package Updater
+      apt:
+       upgrade: yes
+       update_cache: yes
