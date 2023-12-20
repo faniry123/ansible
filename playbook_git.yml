@@ -1,10 +1,20 @@
 ---
-- name: Reboot the machine
-  hosts: all
-  become: true
-  
+- name: Installer Apache2
+  hosts: all  # Remplacez "vos_serveurs" par le groupe d'hôtes ou l'adresse IP de vos serveurs cibles
+  become: true          # Nécessaire pour exécuter des commandes avec des privilèges administratifs (sudo)
+
   tasks:
-    - name: APT Package Updater
+    - name: Mise à jour des packages
       apt:
-       upgrade: yes
-       update_cache: yes
+        update_cache: yes
+
+    - name: Installation d'Apache2
+      apt:
+        name: apache2
+        state: present  # Vous pouvez utiliser "latest" pour toujours obtenir la dernière version
+
+    - name: Démarrage du service Apache2
+      service:
+        name: apache2
+        state: started
+        enabled: yes    # Pour activer le démarrage automatique au démarrage du système
