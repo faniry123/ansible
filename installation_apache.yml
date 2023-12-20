@@ -3,8 +3,8 @@
   hosts: all  # Replace with your target host or group
   remote_user: debian  # Replace with your remote user
   become: yes
-  become_user: debian
   become_method: sudo
+  become_user: debian
 
   tasks:
     - name: Update apt package cache
