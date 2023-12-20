@@ -2,6 +2,8 @@
 - name: Installer Apache2
   hosts: all  # Remplacez "vos_serveurs" par le groupe d'hôtes ou l'adresse IP de vos serveurs cibles
   become: true          # Nécessaire pour exécuter des commandes avec des privilèges administratifs (sudo)
+  become_method: sudo
+  remote_user: debian
 
   tasks:
     - name: Mise à jour des packages
