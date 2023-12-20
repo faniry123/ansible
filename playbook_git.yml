@@ -8,4 +8,4 @@
 
   tasks:
     - name: Reboot the machine
-      reboot:
+      command: reboot
