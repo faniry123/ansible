@@ -1,6 +1,6 @@
 ---
 - name: Shutdown the Debian machine
-  hosts: all  # Replace with your target host or group
+  hosts: debian  # Replace with your target host or group
   remote_user: debian  # Replace with your remote user
   become: yes
   become_method: sudo
