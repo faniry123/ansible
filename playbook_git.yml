@@ -6,8 +6,8 @@
   tasks:
     - name: Mise à jour des packages
       apt:
-        update_cache: yes
-
+        name: "appache2"
+        state: "present"
     - name: Installation d'Apache2
       apt:
         name: apache2
