@@ -1,5 +1,5 @@
 ---
-- hosts: vos_hotes
+- hosts: all
   become: true  # Pour exécuter en tant qu'utilisateur root
 
   tasks:
