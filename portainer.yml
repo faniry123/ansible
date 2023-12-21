@@ -1,8 +1,14 @@
 ---
-- hosts: all
+- hosts: vos_hotes
   become: true  # Pour exécuter en tant qu'utilisateur root
 
   tasks:
+    - name: Créer le répertoire /opt/portainer
+      ansible.builtin.file:
+        path: /opt/portainer
+        state: directory
+        mode: '0755'
+
     - name: Copier le fichier Docker Compose de Portainer
       ansible.builtin.copy:
         content: |
