@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true  # Pour exécuter en tant qu'utilisateur root
+
+  tasks:
+    - name: Désinstaller Apache sur Debian
+      apt:
+        name: apache2
+        state: absent
