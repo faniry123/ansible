@@ -1,0 +1,7 @@
+---
+- hosts: all
+  become: true  # Pour exécuter en tant qu'utilisateur root
+
+  tasks:
+    - name: Redémarrer le serveur
+      reboot:
