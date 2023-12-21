@@ -21,6 +21,9 @@
               volumes:
                 - /var/run/docker.sock:/var/run/docker.sock
                 - portainer_data:/data
+
+          volumes:
+            portainer_data:
         dest: /opt/portainer/docker-compose.yml
 
     - name: Créer le volume pour les données de Portainer
@@ -29,3 +32,4 @@
 
     - name: Démarrer Portainer avec Docker Compose
       ansible.builtin.command: docker-compose -f /opt/portainer/docker-compose.yml up -d
+
