@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: true  # Pour exécuter en tant qu'utilisateur root
+
+  tasks:
+    - name: Mise à jour des paquets
+      apt:
+        update_cache: yes
+
+    - name: Installation des dépendances
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+
+    - name: Ajout de la clé GPG pour le référentiel Docker
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+
+    - name: Ajout du référentiel Docker
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/debian {{ ansible_lsb.codename }} stable"
+        state: present
+
+    - name: Installation de Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Installation de Docker Compose
+      ansible.builtin.get_url:
+        url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x'
+
+    - name: Démarrage du service Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
