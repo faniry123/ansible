@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: true  # Pour exécuter en tant qu'utilisateur root
+
+  tasks:
+    - name: Arrêter et supprimer tous les conteneurs Docker
+      ansible.builtin.command: docker rm -f $(docker ps -aq)
+      ignore_errors: yes  # Ignore l'erreur si aucun conteneur n'est trouvé
+
+    - name: Supprimer les images Docker
+      ansible.builtin.command: docker rmi -f $(docker images -q)
+      ignore_errors: yes  # Ignore l'erreur si aucune image n'est trouvée
+
+    - name: Supprimer le volume Docker Compose de Portainer
+      ansible.builtin.command: docker volume rm -f portainer_data
+      ignore_errors: yes  # Ignore l'erreur si le volume n'existe pas
+
+    - name: Supprimer Docker Compose
+      ansible.builtin.command: rm /usr/local/bin/docker-compose
+      ignore_errors: yes  # Ignore l'erreur si Docker Compose n'est pas installé
+
+    - name: Supprimer Docker
+      ansible.builtin.command: apt-get remove --purge -y docker-ce docker-ce-cli containerd.io
+      ignore_errors: yes  # Ignore l'erreur si Docker n'est pas installé
+
+    - name: Supprimer les fichiers de configuration Docker
+      ansible.builtin.file:
+        path: /etc/docker
+        state: absent
