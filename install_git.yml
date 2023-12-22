@@ -1,0 +1,16 @@
+---
+- name: Install Git on Debian
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+      when: ansible_os_family == 'Debian'
