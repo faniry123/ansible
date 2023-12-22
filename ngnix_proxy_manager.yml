@@ -23,18 +23,19 @@
                 - "80:80"
                 - "81:81"
                 - "443:443"
-              volumes:
-                - /opt/nginx-proxy-manager/data:/data
-                - /opt/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
-                - /opt/nginx-proxy-manager/var:/var/lib/nginx
+              networks:
+                - nginx_proxy_network
+
+          volumes:
+            nginx_proxy_data:
 
           networks:
-            default:
+            nginx_proxy_network:
               driver: bridge
               ipam:
                 config:
-                  - subnet: "192.168.200.0/24"
-                    gateway: "192.168.200.1"
+                  - subnet: "172.22.1.0/24"
+                    gateway: "172.22.0.1"
 
         dest: /opt/nginx-proxy-manager/docker-compose.yml
 
@@ -44,9 +45,7 @@
         state: directory
         mode: '0755'
       loop:
-        - data
-        - letsencrypt
-        - var
+        - nginx_proxy_data
 
     - name: Start Nginx Proxy Manager with Docker Compose
       ansible.builtin.command: docker-compose -f /opt/nginx-proxy-manager/docker-compose.yml up -d
