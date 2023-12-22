@@ -1,6 +1,6 @@
 ---
 - name: Install net-tools on Debian
-  hosts: your_target_group
+  hosts: all
   become: true  # To execute as the root user
 
   tasks:
