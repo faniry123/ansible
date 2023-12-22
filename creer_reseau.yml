@@ -1,0 +1,17 @@
+---
+- name: Create Docker Network with Subnet and Gateway
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create Docker network with custom subnet and gateway
+      docker_network:
+        name: ma_réseaux
+        state: present
+       # driver_options:
+          #com.docker.network.bridge.name: my_bridge
+        #ipam_options:
+          #driver: default
+          config:
+            - subnet: "192.168.100.0/24"
+              gateway: "192.168.100.1"
