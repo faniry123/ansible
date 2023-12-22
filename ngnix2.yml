@@ -1,6 +1,6 @@
 ---
 - name: Deploy Nginx with Docker Compose
-  hosts: your_target_group
+  hosts: all
   become: true  # To execute as the root user
 
   tasks:
