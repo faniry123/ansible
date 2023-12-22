@@ -1,0 +1,14 @@
+---
+- name: Install net-tools on Debian
+  hosts: your_target_group
+  become: true  # To execute as the root user
+
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+
+    - name: Install net-tools
+      apt:
+        name: net-tools
+        state: present
