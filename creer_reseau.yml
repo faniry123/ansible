@@ -6,12 +6,12 @@
   tasks:
     - name: Create Docker network with custom subnet and gateway
       docker_network:
-        name: ma_réseaux
+        name: ma_reseau  # corrected the spelling of "réseau"
         state: present
-       # driver_options:
-          #com.docker.network.bridge.name: my_bridge
-        #ipam_options:
-          #driver: default
+        # driver_options:
+        #   com.docker.network.bridge.name: my_bridge
+        # ipam_options:
+        #   driver: default
           config:
             - subnet: "192.168.100.0/24"
               gateway: "192.168.100.1"
