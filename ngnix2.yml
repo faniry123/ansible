@@ -1,0 +1,26 @@
+---
+- name: Deploy Nginx with Docker Compose
+  hosts: your_target_group
+  become: true  # To execute as the root user
+
+  tasks:
+    - name: Create the directory for Docker Compose file
+      ansible.builtin.file:
+        path: /opt/nginx
+        state: directory
+        mode: '0755'
+
+    - name: Copy the Docker Compose file
+      ansible.builtin.copy:
+        content: |
+          version: '3'
+          services:
+            nginx:
+              image: nginx
+              container_name: my_nginx_container
+              ports:
+                - "80:80"
+        dest: /opt/nginx/docker-compose.yml
+
+    - name: Run Docker Compose
+      ansible.builtin.command: docker-compose -f /opt/nginx/docker-compose.yml up -d
