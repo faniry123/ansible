@@ -34,8 +34,8 @@
               driver: bridge
               ipam:
                 config:
-                  - subnet: "172.22.1.0/24"
-                    gateway: "172.22.0.1"
+                  - subnet: "172.24.1.0/24"
+                    gateway: "172.24.0.1"
 
         dest: /opt/nginx-proxy-manager/docker-compose.yml
 
