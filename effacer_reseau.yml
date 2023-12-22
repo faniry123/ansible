@@ -1,0 +1,10 @@
+---
+- name: Remove Docker Network with Subnet and Gateway
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Remove Docker network with custom subnet and gateway
+      docker_network:
+        name: nom_reseau
+        state: absent
