@@ -1,6 +1,6 @@
 ---
 - name: Install Apache on Debian
-  hosts: all  # Replace with your target host or group
+  hosts: ma_debian  # Replace with your target host or group
   #remote_user: debian  # Replace with your remote user
   become: yes
   become_method: sudo
