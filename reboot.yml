@@ -1,7 +1,6 @@
 ---
 - hosts: all
   become: true  # Pour exécuter en tant qu'utilisateur root
-  gather_facts: yes
 
   tasks:
     - name: Redémarrer le serveur
