@@ -1,6 +1,6 @@
 ---
 - name: Run docker-compose up -d from Git
-  hosts: your_target_host
+  hosts: all
   become: true
 
   tasks:
@@ -8,6 +8,12 @@
       git:
         repo: https://github.com/faniry123/votre-repo.git
         dest: /path/on/remote/repository
+
+    - name: Create directory for Docker build
+      file:
+        path: /path/on/remote/repository/build
+        state: directory
+        mode: '0755'  # Vous pouvez ajuster les permissions selon vos besoins
 
     - name: Build Docker image from Dockerfile
       community.general.docker_image:
@@ -26,4 +32,3 @@
       file:
         path: /path/on/remote/repository
         state: absent
-
