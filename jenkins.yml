@@ -1,1 +1,35 @@
+---
+- hosts: all
+  become: true  # Pour exécuter en tant qu'utilisateur root
 
+  tasks:
+    - name: Copy Dockerfile
+      copy:
+        src: Dockerfile.jenkins_user
+        dest: /path/to/your/target/directory/Dockerfile.jenkins_user
+
+    - name: Docker Compose file
+      copy:
+        content: |
+          version: '3'
+          services:
+            jenkins:
+              build:
+                context: .
+                dockerfile: Dockerfile.jenkins_user
+              container_name: jenkins
+              image:jenkins_user
+              restart: always
+              ports:
+                - "8080:8080"
+                - "50000:50000"
+              volumes:
+                - "/home/debian/jenkins_compose/jenkins_configuration:/var/jenkins_home"
+                - "/var/run/docker.sock:/var/run/docker.sock"
+        dest: /path/to/your/target/directory/docker-compose.yml
+
+    - name: Start Jenkins with Docker Compose
+      community.general.docker_compose:
+        project_src: /path/to/your/target/directory
+        state: present
+      become: true
