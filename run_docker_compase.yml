@@ -6,29 +6,29 @@
   tasks:
     - name: Clone Git repository with Dockerfile and docker-compose.yml
       git:
-        repo: https://github.com/faniry123/votre-repo.git
-        dest: /path/on/remote/repository
+        repo: https://github.com/faniry123/docker_compose.git
+        dest: /home/debian/test
 
     - name: Create directory for Docker build
       file:
-        path: /path/on/remote/repository/build
+        path: /home/debian/test/build
         state: directory
         mode: '0755'  # Vous pouvez ajuster les permissions selon vos besoins
 
     - name: Build Docker image from Dockerfile
       community.general.docker_image:
-        name: your_image_name
-        path: /path/on/remote/repository
-        buildargs:
-          HTTP_PROXY: http://proxy.example.com:8080  # Ajoutez des arguments de build Docker si nécessaire
-          HTTPS_PROXY: http://proxy.example.com:8080
+        name: jenkins_user
+        path: /home/debian/test
+       # buildargs:
+        #  HTTP_PROXY: http://proxy.example.com:8080  # Ajoutez des arguments de build Docker si nécessaire
+         # HTTPS_PROXY: http://proxy.example.com:8080
 
     - name: Run docker-compose up -d
       command: "docker-compose up -d"
       args:
-        chdir: /path/on/remote/repository
+        chdir: /home/debian/test
 
     - name: Remove cloned Git repository
       file:
-        path: /path/on/remote/repository
+        path: /home/debian/test
         state: absent
