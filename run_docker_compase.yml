@@ -18,7 +18,7 @@
     - name: Build Docker image from Dockerfile
       community.general.docker_image:
         name: jenkins_user
-        path: /home/debian/test/build
+        source: /home/debian/test/build
        # buildargs:
         #  HTTP_PROXY: http://proxy.example.com:8080  # Ajoutez des arguments de build Docker si nécessaire
          # HTTPS_PROXY: http://proxy.example.com:8080
