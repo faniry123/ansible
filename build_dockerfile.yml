@@ -4,8 +4,8 @@
   gather_facts: false
 
   vars:
-    git_repo_url: "https://github.com/faniry123/votre-repo.git"
-    git_repo_version: "master"
+    git_repo_url: "https://github.com/faniry123/ansible.git"
+    git_repo_version: "main"
     dockerfile_path: "/chemin/vers/Dockerfile"
 
   tasks:
