@@ -1,0 +1,21 @@
+---
+- name: Build Dockerfile from Git
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    git_repo_url: "https://github.com/faniry123/votre-repo.git"
+    git_repo_version: "master"
+    dockerfile_path: "/chemin/vers/Dockerfile"
+
+  tasks:
+    - name: Clone Git repository
+      git:
+        repo: "{{ git_repo_url }}"
+        dest: "/tmp/docker_build"
+        version: "{{ git_repo_version }}"
+
+    - name: Build Docker image
+      command: "docker build -t mon_image:{{ git_repo_version }} {{ dockerfile_path }}"
+      args:
+        chdir: "/tmp/docker_build"
