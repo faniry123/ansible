@@ -2,6 +2,12 @@
 - hosts: all
   become: true  # Pour exécuter en tant qu'utilisateur root
 
-  tasks:
-    - name: Redémarrer le serveur
-      reboot:
+- name: Update package cache
+  apt:
+    update_cache: yes
+
+- name: Upgrade all packages
+  apt:
+    upgrade: yes
+    autoremove: yes
+    autoclean: yes
