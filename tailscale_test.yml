@@ -1,20 +1,17 @@
 ---
 - name: Install tailscale on vps
-  hosts: all  # Replace with your target host or group
-  #remote_user: debian  # Replace with your remote user
+  hosts: all  # Remplacer par votre hôte cible ou groupe
   become: yes
-  become_method: sudo
-  #become_user: debian
 
   tasks:
     - name: Update apt package cache
       apt:
         update_cache: yes
 
+    - name: Run Tailscale install script
+      shell: curl -fsSL https://tailscale.com/install.sh | sudo sh
+   
     - name: Install tailscale
       apt:
         name: tailscale
         state: present
-        
-
-
