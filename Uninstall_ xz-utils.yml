@@ -1,0 +1,27 @@
+---
+- name: Install tailscale on vps
+  hosts: all  # Remplacer par votre hôte cible ou groupe
+  become: yes
+
+  tasks:
+    - name: Update apt package cache
+      apt:
+        update_cache: yes
+
+    - name: uninstall just xz-utils
+      command: sudo apt-get -y remove xz-utils
+      
+    - name: uninstall the xz-utils
+      command: sudo apt-get -y autoremove xz-utils
+   
+    - name: Purging xz-utils
+      command: sudo apt-get -y purge xz-utils
+
+    - name: delete configuration and/or data files of xz-util
+      command: sudo apt-get -y autoremove --purge xz-utils
+
+    
+
+  
+    
+    
