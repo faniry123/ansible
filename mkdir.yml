@@ -1,9 +1,9 @@
 ---
-- hosts: all  # Spécifie les hôtes sur lesquels exécuter le playbook
+- hosts: all
   become: true  # Pour exécuter en tant qu'utilisateur root
   
   tasks:
     - name: Create directory
       file:
-        path: /chemin/du/dossier  # Spécifie le chemin du dossier à créer
-        state: directory  # Indique qu'il s'agit d'un dossier à créer
+        path: /home/debian/ # Spécifie le chemin du dossier à créer
+        state: testebebe  # Indique qu'il s'agit d'un dossier à créer
