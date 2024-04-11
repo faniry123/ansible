@@ -32,7 +32,7 @@
 
         - name: Print message when memory is not cleared
           debug:
-            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 2G. No action required."
+            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 4G. No action required."
           when: not clear_cache_output.changed
 
       rescue:
