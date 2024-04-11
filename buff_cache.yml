@@ -1,9 +1,8 @@
 ---
-- hosts: all
+- hosts: all  # Spécifie les hôtes sur lesquels exécuter le playbook
   become: true  # Pour exécuter en tant qu'utilisateur root
-  
-- name: Check and clear buff/cache memory
-  gather_facts: no
+  gather_facts: no  # Ne collecte pas les faits sur les hôtes
+
   tasks:
     - name: Get buff/cache memory value in kilobytes
       shell: free | grep -i mem | awk '{print $6}'
@@ -36,4 +35,3 @@
         - name: Print error message if command fails
           debug:
             msg: "Error occurred while trying to clear memory."
-
