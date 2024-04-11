@@ -1,6 +1,8 @@
 ---
+- hosts: all
+  become: true  # Pour exécuter en tant qu'utilisateur root
+  
 - name: Check and clear buff/cache memory
-  hosts: localhost
   gather_facts: no
   tasks:
     - name: Get buff/cache memory value in kilobytes
