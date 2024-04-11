@@ -5,5 +5,5 @@
   tasks:
     - name: Create directory
       file:
-        path: /home/debian/ # Spécifie le chemin du dossier à créer
+        path: /home/debian/Testebe # Spécifie le chemin du dossier à créer
         state: testebebe  # Indique qu'il s'agit d'un dossier à créer
