@@ -1,0 +1,37 @@
+---
+- name: Check and clear buff/cache memory
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Get buff/cache memory value in kilobytes
+      shell: free | grep -i mem | awk '{print $6}'
+      register: buff_cache_output
+      changed_when: false
+
+    - name: Set the threshold to 2GB in kilobytes
+      set_fact:
+        seuil: "{{ 2 * 1024 * 1024 }}"
+
+    - name: Compare buff/cache memory to the threshold
+      block:
+        - name: Clear memory if buff/cache exceeds threshold
+          shell: echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+          when: buff_cache_output.stdout | int > seuil
+          register: clear_cache_output
+          changed_when: clear_cache_output.stdout != ""
+
+        - name: Print message when memory is cleared
+          debug:
+            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB exceeds the threshold of 2G. Memory has been cleared."
+          when: clear_cache_output.changed
+
+        - name: Print message when memory is not cleared
+          debug:
+            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 2G. No action required."
+          when: not clear_cache_output.changed
+
+      rescue:
+        - name: Print error message if command fails
+          debug:
+            msg: "Error occurred while trying to clear memory."
+
