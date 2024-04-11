@@ -4,4 +4,4 @@
   
   tasks:
     - name: Create directory
-      command: mkdir -p /home/debian/
+      command: mkdir FANIRY -p /home/debian/
