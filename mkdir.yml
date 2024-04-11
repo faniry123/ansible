@@ -4,6 +4,4 @@
   
   tasks:
     - name: Create directory
-      file:
-        path: /home/debian/Testebe # Spécifie le chemin du dossier à créer
-        state: testebebe  # Indique qu'il s'agit d'un dossier à créer
+      command: mkdir -p /home/debian/
