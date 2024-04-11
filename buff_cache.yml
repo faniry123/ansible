@@ -9,15 +9,19 @@
       register: buff_cache_output
       changed_when: false
 
-    - name: Set the threshold to 2GB in kilobytes
+    - name: Set the threshold to 4GB in kilobytes
       set_fact:
         seuil: "{{ 4 * 1024 * 1024 }}"
+
+    - name: Convert buff/cache memory value to integer
+      set_fact:
+        buff_cache_int: "{{ buff_cache_output.stdout | int }}"
 
     - name: Compare buff/cache memory to the threshold
       block:
         - name: Clear memory if buff/cache exceeds threshold
           shell: echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
-          when: buff_cache_output.stdout | int > seuil
+          when: buff_cache_int > seuil
           register: clear_cache_output
           changed_when: clear_cache_output.stdout != ""
 
