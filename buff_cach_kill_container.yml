@@ -11,7 +11,7 @@
 
     - name: Set the threshold to 4GB in kilobytes
       set_fact:
-        seuil: "{{ 1 * 512 * 1024 }}"
+        seuil: "{{ 1 * 1024 * 1024 }}"
 
     - name: Convert buff/cache memory value to integer
       set_fact:
@@ -48,7 +48,12 @@
             msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 4G. No action required."
           when: not clear_cache_output.changed
 
-        
+        - name: Kill and restart npm container
+          shell: |
+            sudo docker kill npm
+            sudo docker restart kk
+          when: clear_cache_output.changed
+       
         #- name: Restart containers
          # shell: docker restart {{ npm }}
          # when: buff_cache_int > seuil and clear_cache_output.changed
