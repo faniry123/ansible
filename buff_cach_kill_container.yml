@@ -19,10 +19,6 @@
 
     - name: Compare buff/cache memory to the threshold
       block:
-        - name: Kill container if buff/cache exceeds threshold and cache is cleared
-          shell: sudo docker kill npm 
-          when: buff_cache_int > seuil
-
         - name: Clear memory if buff/cache exceeds threshold
           shell: echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
           when: buff_cache_int > seuil
@@ -48,3 +44,8 @@
         - name: Print error message if command fails
           debug:
             msg: "Error occurred while trying to clear memory."
+            
+    - name: Kill container if buff/cache exceeds threshold and cache is cleared
+      shell: sudo docker kill npm
+  
+
