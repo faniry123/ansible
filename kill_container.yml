@@ -1,5 +1,8 @@
+---
+- hosts: all  # Spécifie les hôtes sur lesquels exécuter le playbook
+  become: true  # Pour exécuter en tant qu'utilisateur root
 
-
-- name: Kill container if buff/cache exceeds threshold and cache is cleared
-          shell: sudo docker kill npm 
-          when: buff_cache_int > seuil and clear_cache_output.changed
+  tasks:
+    - name: Kill container if buff/cache exceeds threshold and cache is cleared
+      shell: sudo docker kill npm
+     
