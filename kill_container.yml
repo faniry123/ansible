@@ -1,0 +1,5 @@
+
+
+- name: Kill container if buff/cache exceeds threshold and cache is cleared
+          shell: sudo docker kill npm 
+          when: buff_cache_int > seuil and clear_cache_output.changed
