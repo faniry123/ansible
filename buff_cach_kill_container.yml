@@ -39,9 +39,9 @@
           shell: docker kill {{ npm }}
           when: buff_cache_int > seuil and clear_cache_output.changed
 
-        - name: Restart containers
-          shell: docker restart {{ npm }}
-          when: buff_cache_int > seuil and clear_cache_output.changed
+        #- name: Restart containers
+         # shell: docker restart {{ npm }}
+         # when: buff_cache_int > seuil and clear_cache_output.changed
 
       rescue:
         - name: Print error message if command fails
