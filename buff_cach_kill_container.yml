@@ -29,13 +29,7 @@
           register: clear_cache_output
           changed_when: clear_cache_output.stdout != ""
 
-        - name: Kill container if buff/cache exceeds threshold and cache is cleared
-          shell: echo "{{ buff_cache_output.stdout }}"
-          when: buff_cache_int > seuil
-
-        - name: Kill and restart npm container
-          shell: sudo docker kill npm 
-          when: clear_cache_output.changed
+        
 
         - name: Print message when memory is cleared
           debug:
