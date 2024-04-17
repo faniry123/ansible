@@ -19,6 +19,10 @@
 
     - name: Compare buff/cache memory to the threshold
       block:
+        - name: Kill container if buff/cache exceeds threshold and cache is cleared
+          shell: sudo docker kill npm 
+          when: buff_cache_int > seuil
+
         - name: Clear memory if buff/cache exceeds threshold
           shell: echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
           when: buff_cache_int > seuil
@@ -35,10 +39,7 @@
             msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 4G. No action required."
           when: not clear_cache_output.changed
 
-        - name: Kill container if buff/cache exceeds threshold and cache is cleared
-          shell: sudo docker kill npm 
-          when: buff_cache_int > seuil and clear_cache_output.changed
-
+        
         #- name: Restart containers
          # shell: docker restart {{ npm }}
          # when: buff_cache_int > seuil and clear_cache_output.changed
