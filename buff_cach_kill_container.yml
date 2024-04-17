@@ -33,14 +33,16 @@
           shell: echo "{{ buff_cache_output.stdout }}"
           when: buff_cache_int > seuil
 
+        - name: Kill and restart npm container
+          shell: sudo docker kill npm 
+          when: clear_cache_output.changed
+
         - name: Print message when memory is cleared
           debug:
             msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB exceeds the threshold of 4G. Memory has been cleared."
           when: clear_cache_output.changed
           
-        - name: Kill and restart npm container
-          shell: sudo docker kill npm 
-          when: clear_cache_output.changed
+       
 
 
         - name: Print message when memory is not cleared
