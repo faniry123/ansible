@@ -6,7 +6,7 @@
   tasks:
     - name: Update apt package cache
       apt:
-        update_cache: yes
+        update_cache: no
 
     - name: uninstall just xz-utils
       command: sudo apt-get -y remove xz-utils
