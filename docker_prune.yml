@@ -1,0 +1,8 @@
+---
+- name: Remove unused image in container
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Remove unused image
+      shell: docker image prune -f
