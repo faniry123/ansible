@@ -5,4 +5,4 @@
 
   tasks:
     - name: Remove unused image
-      shell: docker image prune -f
+      shell: docker image prune -f -a
