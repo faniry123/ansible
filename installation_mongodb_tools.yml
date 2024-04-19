@@ -5,33 +5,9 @@
   tasks:
     - name: Mise à jour des paquets
       apt:
-        update_cache: no
+        update_cache: yes
 
     - name: Installation de mongodb-org-tools
       apt:
         name: mongodb-org-tools
         state: present
-
-- name: Vérification de l'installation de mongodump et mongorestore
-  hosts: all
-  become: yes
-  tasks:
-    - name: Vérification de mongodump
-      command: mongodump --version
-      register: mongodump_version
-      changed_when: false
-      ignore_errors: yes
-
-    - name: Vérification de mongorestore
-      command: mongorestore --version
-      register: mongorestore_version
-      changed_when: false
-      ignore_errors: yes
-
-    - name: Affichage de la version de mongodump
-      debug:
-        msg: "La version de mongodump est {{ mongodump_version.stdout }}"
-
-    - name: Affichage de la version de mongorestore
-      debug:
-        msg: "La version de mongorestore est {{ mongorestore_version.stdout }}"
