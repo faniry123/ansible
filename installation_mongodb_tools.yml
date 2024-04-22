@@ -4,10 +4,9 @@
   become: yes
   tasks:
     - name: Mise à jour des paquets
-      apt:
-        update_cache: yes
+      command: apt update
+      become: no
 
     - name: Installation de mongodb-org-tools
-      apt:
-        name: mongodb-org-tools
-        state: present
+      command: apt install -y mongodb-org-tools
+      become: yes
