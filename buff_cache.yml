@@ -8,7 +8,10 @@
       shell: free | grep -i mem | awk '{print $6}'
       register: buff_cache_output
       changed_when: false
-
+      
+    - name: affichage
+      commande: echo "{{ buff_cache_output.stdout }}"
+      
     - name: Set the threshold to 4GB in kilobytes
       set_fact:
         seuil: "{{ 4 * 1024 * 1024 }}"
