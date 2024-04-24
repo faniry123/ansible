@@ -1,5 +1,4 @@
 ---
----
 - hosts: all  # Spécifie les hôtes sur lesquels exécuter le playbook
   become: true  # Pour exécuter en tant qu'utilisateur root
   gather_facts: no  # Ne collecte pas les faits sur les hôtes
