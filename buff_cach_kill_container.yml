@@ -35,11 +35,7 @@
             msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 4G. No action required."
           when: not clear_cache_output.changed
 
-        - name: Kill and restart npm container
-          shell: |
-            sudo docker kill npm
-            sudo docker restart kk
-          when: clear_cache_output.changed
+
 
       rescue:
         - name: Print error message if command fails
