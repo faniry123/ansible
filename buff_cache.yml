@@ -15,7 +15,7 @@
 
     - name: Convert buff/cache memory value to integer
       set_fact:
-        buff_cache_int: "{{ buff_cache_output.stdout | int }}"
+        buff_cache_int: "{{ buff_cache_output | int }}"
 
     - name: Compare buff/cache memory to the threshold
       block:
