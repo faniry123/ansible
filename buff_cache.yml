@@ -9,8 +9,8 @@
       register: buff_cache_output
       changed_when: false
       
-    - name: affichage
-      commande: echo "{{ buff_cache_output.stdout }}"
+    #- name: affichage
+      #commande: echo "{{ buff_cache_output.stdout }}"
       
     - name: Set the threshold to 4GB in kilobytes
       set_fact:
@@ -18,7 +18,7 @@
 
     - name: Convert buff/cache memory value to integer
       set_fact:
-        buff_cache_int: "{{ buff_cache_output | int }}"
+        buff_cache_int: "{{ buff_cache_output }}"
 
     - name: Compare buff/cache memory to the threshold
       block:
