@@ -3,9 +3,9 @@
   become: true  # Pour exécuter en tant qu'utilisateur root
 
   tasks:
-    - name: Créer le répertoire /opt/portainer
+    - name: Créer le répertoire ~/portainer
       ansible.builtin.file:
-        path: /opt/portainer
+        path: ~/docker/portainer
         state: directory
         mode: '0755'
 
@@ -25,12 +25,12 @@
 
           volumes:
             portainer_data:
-        dest: /opt/portainer/docker-compose.yml
+        dest: ~/docker/portainer/docker-compose.yml
 
     - name: Créer le volume pour les données de Portainer
       ansible.builtin.command: docker volume create portainer_data
       ignore_errors: yes  # Ignore l'erreur si le volume existe déjà
 
     - name: Démarrer Portainer avec Docker Compose
-      ansible.builtin.command: docker-compose -f /opt/portainer/docker-compose.yml up -d
+      ansible.builtin.command: docker-compose -f ~/docker/portainer/docker-compose.yml up -d
 
