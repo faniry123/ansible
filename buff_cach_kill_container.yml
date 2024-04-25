@@ -11,7 +11,7 @@
 
     - name: Set the threshold to 4GB in kilobytes
       set_fact:
-        seuil: "{{ 1 * 1024 * 1024 }}"
+        seuil: "{{ 6 * 1024 * 1024 }}"
 
     - name: Convert buff/cache memory value to integer
       set_fact:
