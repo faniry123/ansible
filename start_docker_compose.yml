@@ -5,6 +5,6 @@
 
   tasks:
     - name: Run docker-compose up -d
-      command: "docker-compose up -d"
+      command: "/home/johfanang/docker/docker-compose up -d"
       args:
         chdir: /home/johfanang/docker
