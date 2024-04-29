@@ -1,0 +1,10 @@
+---
+- name: Run docker-compose up -d from Git
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Run docker-compose up -d
+      command: "docker-compose up -d"
+      args:
+        chdir: /home/johfanang/docker
