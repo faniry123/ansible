@@ -4,8 +4,8 @@
   become: true
   tasks:
     - name: kill container
-      command: docker compose -f /home/johfanang/docker/docker-compose.yml down
+      command: docker compose -f /home/johfanang/docker/docker-compose_br.yml down
 
     - name: up container
-      command: docker compose -f /home/johfanang/docker/docker-compose.yml up -d
+      command: docker compose -f /home/johfanang/docker/docker-compose_br.yml up -d
      
