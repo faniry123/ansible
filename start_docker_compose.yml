@@ -3,8 +3,9 @@
   hosts: all
   become: true
   tasks:
-    #- name: Change directory to where docker-compose.yml is located
-     # command: docker compose -f /home/johfanang/docker/docker-compose.yml up -d
-    - name: Change directory to where docker-compose.yml is located
+    - name: kill container
       command: docker compose -f /home/johfanang/docker/docker-compose.yml down
+
+    - name: up container
+      command: docker compose -f /home/johfanang/docker/docker-compose.yml up -d
      
