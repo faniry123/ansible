@@ -4,11 +4,6 @@
   become: true
 
   tasks:
-    - name: Change directory to /docker
-      shell: cd /docker
-      args:
-        chdir: /home/johfanang/docker
-
     - name: Run docker-compose up -d
       shell: docker-compose up -d
       args:
