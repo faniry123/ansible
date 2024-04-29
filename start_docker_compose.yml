@@ -1,9 +1,13 @@
 ---
-- name: Run docker-compose up -d from Git
+- name: Run Docker Compose
   hosts: all
   become: true
-
   tasks:
+    - name: Change directory to where docker-compose.yml is located
+      command: cd /home/johfanang/docker
+      args:
+        chdir: /home/johfanang/docker
+
     - name: Run docker-compose up -d
       command: docker-compose up -d
       args:
