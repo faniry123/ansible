@@ -4,6 +4,5 @@
   become: true
   tasks:
     - name: Change directory to where docker-compose.yml is located
-      command: docker-compose up -d
-      args:
-        chdir: /home/johfanang/docker
+      command: /home/johfanang/docker/docker-compose up -d
+     
