@@ -1,4 +1,3 @@
----
 - hosts: all  # Spécifie les hôtes sur lesquels exécuter le playbook
   become: true  # Pour exécuter en tant qu'utilisateur root
   gather_facts: no  # Ne collecte pas les faits sur les hôtes
@@ -8,9 +7,9 @@
       shell: free | grep -i mem | awk '{print $6}'
       register: buff_cache_output
       changed_when: false
-      
-    #- name: affichage
-      #commande: echo "{{ buff_cache_output.stdout }}"
+
+    # - name: affichage
+    #   command: echo "{{ buff_cache_output.stdout }}"
       
     - name: Set the threshold to 4GB in kilobytes
       set_fact:
@@ -18,7 +17,7 @@
 
     - name: Convert buff/cache memory value to integer
       set_fact:
-        buff_cache_int: "{{ buff_cache_output }}"
+        buff_cache_int: "{{ buff_cache_output.stdout | int }}"
 
     - name: Compare buff/cache memory to the threshold
       block:
@@ -30,12 +29,12 @@
 
         - name: Print message when memory is cleared
           debug:
-            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB exceeds the threshold of 4G. Memory has been cleared."
+            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB exceeds the threshold of 4GB. Memory has been cleared."
           when: clear_cache_output.changed
 
         - name: Print message when memory is not cleared
           debug:
-            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 4G. No action required."
+            msg: "The buff/cache memory of {{ buff_cache_output.stdout }} KB is below the threshold of 4GB. No action required."
           when: not clear_cache_output.changed
 
       rescue:
