@@ -1,7 +1,7 @@
 ---
-- hosts: all  # Spécifie les hôtes sur lesquels exécuter le playbook
-  become: true  # Pour exécuter en tant qu'utilisateur root
-  gather_facts: no  # Ne collecte pas les faits sur les hôtes
+- hosts: all
+  become: true
+  gather_facts: no
 
   tasks:
     - name: Get buff/cache memory value in kilobytes
@@ -9,12 +9,9 @@
       register: buff_cache_output
       changed_when: false
 
-    # - name: affichage
-    #   command: echo "{{ buff_cache_output.stdout }}"
-      
     - name: Set the threshold to 4GB in kilobytes
       set_fact:
-        seuil: "{{ 2* 1024 * 1024 }}"
+        seuil: "{{ 4 * 1024 * 1024 }}"  # Correction du seuil à 4GB (4 * 1024 * 1024)
 
     - name: Convert buff/cache memory value to integer
       set_fact:
