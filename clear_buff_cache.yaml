@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+  gather_facts: no
+
+  tasks:
+    - name: Clear pagecache, dentries, and inodes
+      shell: 'echo 3 > /proc/sys/vm/drop_caches'
+      register: clear_cache_output
+      changed_when: false
+
+    - name: Print message when caches are cleared
+      debug:
+        msg: "Caches have been cleared."
+      when: clear_cache_output.rc == 0
+
+    - name: Print message when caches are not cleared
+      debug:
+        msg: "Caches were not cleared."
+      when: clear_cache_output.rc != 0
